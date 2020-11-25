@@ -1,0 +1,124 @@
+<!-- referencia local #busqueda, para guardar el contenido del formulario en cada momento (cada vez que apreto y suelto una tecla) y mandarselo al metodo buscarArtista con la propiedad .value-->
+ <input #busqueda type="text" (keyup)="buscar(busqueda.value)" class="form-control" placeholder="Buscar @artista, cancion" id="formulario">
+
+ <!-- FAVORITOS -->
+  <div *ngIf="mostrarContenido===false"> <!-- Si el contenido del formulario de busqueda esta vacio, mustra los favoritos -->
+    <div *ngIf="_favoritos.obtenerArtistasFavoritos().length > 0"> <!-- Si hay favoritos que mostrar, renderiza el fondo correspondiente y muestra las tarjetas -->
+      <div class="fondo3 margen-parrafo">
+        <p class ="parrafo-responsivo" >Artistas</p>
+      </div>
+    <div class="card-columns margenes">
+ <div *ngFor="let artistaFavorito of _favoritos.obtenerArtistasFavoritos(); let i=index">
+  <div class="card">    <!-- para que todas las imagenes tengan el mismo tamaño. Se usa la clase embed-responsive con sus distintas propiedades, tanto en la etiqueta div como en la etiqueta img -->
+    <div class="embed-responsive embed-responsive-1by1">
+    <img class="card-img-top embed-responsive-item img-fluid" [src]="artistaFavorito.images | noimage" alt="..."/>
+    </div>
+  <button type="button" style="background-color:red; position: absolute; top: 0%;" (click)="eliminarArtistaFavorito(i)"><img src="../../../assets/img/eliminar2.png" alt="x" style="max-width: 25px;"/></button>
+    <div class="card-body" style="background-color:goldenrod;">
+  <h3 class="card-title">{{ artistaFavorito.name }}</h3> <!-- Nombre de la cancion y nombre del cantante -->
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
+<div *ngIf="_favoritos.obtenerCancionesFavoritas().length > 0">
+  <div class="fondo2 margen-parrafo">
+    <p class ="parrafo-responsivo">Canciones</p>
+    </div>
+  <div class="card-columns margenes">
+<div *ngFor="let cancionFavorita of _favoritos.obtenerCancionesFavoritas(); let i=index">
+  <div class="card">
+    <!-- para que todas las imagenes tengan el mismo tamaño. Se usa la clase embed-responsive con sus distintas propiedades, tanto en la etiqueta div como en la etiqueta img -->
+    <div class="embed-responsive embed-responsive-1by1">
+    <img class="card-img-top embed-responsive-item img-fluid" [src]="cancionFavorita.album.images | noimage " alt="..."/>
+    </div>
+  <button type="button" style="background-color:red; position: absolute; top: 0%;" (click)="eliminarCancionFavorita(i)"><img src="../../../assets/img/eliminar2.png" alt="x" style="max-width: 25px;"/></button>
+    <div class="card-body" style="background-color:khaki;">
+      <!-- <h4 class="card-title">{{ cancionFavorita.name }} - {{cancionFavorita.artists[0].name}}</h4> --> <!-- Nombre de la cancion y nombre del cantante -->
+      <div class="card-title text-truncate" style="font-size: 25px; font-weight: 600; " data-title="{{ cancionFavorita.name }} - {{ cancionFavorita.artists[0].name }}">{{ cancionFavorita.name }} - {{cancionFavorita.artists[0].name}}</div> <!-- Nombre de la cancion y nombre del cantante -->
+</div>
+    </div>
+  </div>
+</div>
+</div>
+<div *ngIf="_favoritos.obtenerNuevosLanzamientosFavoritos().length > 0">
+<!-- <p style="font-size: 50px; margin-bottom: 30px; background-color: brown; text-align: center;">Nuevos Lanzamientos</p> -->
+<div class="fondo margen-parrafo">
+<p class ="parrafo-responsivo">Nuevos Lanzamientos</p>
+</div>
+<div class="card-columns margenes">
+<div *ngFor="let nuevoLanzamientoFavorito of _favoritos.obtenerNuevosLanzamientosFavoritos(); let i=index">
+  <div class="card">
+    <!-- para que todas las imagenes tengan el mismo tamaño. Se usa la clase embed-responsive con sus distintas propiedades, tanto en la etiqueta div como en la etiqueta img -->
+    <div class="embed-responsive embed-responsive-1by1">
+    <img class="card-img-top embed-responsive-item img-fluid" [src]="nuevoLanzamientoFavorito.images | noimage" alt="..."/>
+    </div>
+  <button type="button" style="background-color:red; position: absolute; top: 0%;" (click)="eliminarNuevoLanzamientoFavorito(i)"><img src="../../../assets/img/eliminar2.png" alt="x" style="max-width: 25px;"/></button>
+    <div class="card-body" style="background-color: gray;">
+      <div class="card-title text-truncate" style="font-size: 30px; font-weight: 600; " data-title="{{nuevoLanzamientoFavorito.name}}">{{ nuevoLanzamientoFavorito.name }}</div>
+      <p class="card-text">
+        <!-- Pongo todos los artistas que cantan ese tema en botoncitos amarillos -->
+        <span style="font-size:90%" *ngFor="let artista of nuevoLanzamientoFavorito.artists" class="badge badge-warning">
+          {{ artista.name }}
+        </span>
+      </p>
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+<!-- FIN FAVORITOS -->
+
+
+
+<!-- BUSQUEDA -->
+   <div *ngIf="mostrarContenido"> <!-- Si el contenido del formulario de busqueda esta vacio, borra todos los resultados de busqueda anteriores -->
+    <div *ngIf="buscarArtista; then artista else cancion"></div>
+    <ng-template #artista>
+ <div class="card-columns margenes">
+  <div *ngFor="let artista of artistas | slice:0:cantidadTarjetas; let i=index;">
+    <div class="card">
+      <!-- para que todas las imagenes tengan el mismo tamaño. Se usa la clase embed-responsive con sus distintas propiedades, tanto en la etiqueta div como en la etiqueta img -->
+      <div class="embed-responsive embed-responsive-1by1">
+      <img class="card-img-top embed-responsive-item img-fluid" [src]="artista.images | noimage" alt="..."/>
+      </div>
+    <button class="button-favorite-image" (click)="_favoritos.guardarArtistaFavorito(artistas[i])"></button>
+      <div class="card-body" style="background-color:goldenrod;">
+        <h3 class="card-title">{{ artista.name }}</h3>
+      </div>
+    </div>
+  </div>
+  </div>
+  </ng-template>
+  <ng-template #cancion>
+ <div class="card-columns margenes">
+    <div *ngFor="let cancion of canciones | slice:0:cantidadTarjetas; let i=index">
+      <div class="card">
+        <!-- para que todas las imagenes tengan el mismo tamaño. Se usa la clase embed-responsive con sus distintas propiedades, tanto en la etiqueta div como en la etiqueta img -->
+        <div class="embed-responsive embed-responsive-1by1">
+        <img class="card-img-top embed-responsive-item img-fluid" [src]="cancion.album.images | noimage" alt="..."/>
+        </div>
+    <button class="button-favorite-image" (click)="_favoritos.guardarCancionFavorita(canciones[i])"></button>
+        <div class="card-body" style="background-color:khaki;">
+          <div class="card-title text-truncate" style="font-size: 25px; font-weight: 600; " data-title="{{ cancion.name }} - {{ cancion.artists[0].name }}">{{ cancion.name }} - {{cancion.artists[0].name}}</div> <!-- Nombre de la cancion y nombre del cantante -->
+        </div>
+      </div>
+    </div>
+    </div>
+  </ng-template>
+  </div>
+<!-- FIN BUSQUEDA -->
+
+
+<!-- Boton de mostrar mas... -->
+<div *ngIf="mostrarContenido"> <!-- Oculta el boton de mostrar mas si el contenido del formulario de busqueda esta vacio -->
+<div class="container mt-3">
+  <div class="col-lg-4 center"> <!-- Ancho del boton de mostrar mas y posicion centrada-->
+    <div *ngIf="cantidadTarjetas < artistas.length || cantidadTarjetas < canciones.length"> <!-- Mientras no llegue al final del arreglo, sigue apareciendo el boton de mostrar mas -->
+      <button type="button" class="btn btn-success btn-lg" style="width: 300px; margin-left: 16px;" (click)="increaseShow()">Mostrar mas...</button> <!-- Cada vez que hago click en el boton, llama al metodo handler increaseShow, que me incrementa el valor de la variable show para mostrar mas elementos por pantalla-->
+    </div>
+  </div>
+</div>
+</div>
+

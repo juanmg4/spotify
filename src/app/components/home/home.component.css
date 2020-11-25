@@ -1,0 +1,180 @@
+@media (max-width: 700px) {
+  .card-columns {
+    column-count: 1; /* cantidad de tarjetas por columna */
+    width: 400px; /* ancho de la tarjeta (en em)*/
+  }
+  /* Margenes de las tarjetas */
+  .margenes {
+    margin-bottom: 50px;
+  }
+  /* tamaño del contenedor del boton */
+  .container {
+    height: 20px;
+  }
+
+  /* centrar boton */
+  .center {
+    top: 10%; /* Mueve el boton hacia arriba si es negativo y hacia abajo si es positivo */
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (min-width: 700px) {
+  .card-columns {
+    column-count: 2; /* cantidad de tarjetas por columna */
+    width: 600px; /* ancho de la tarjeta (en em)*/
+  }
+  /* Margenes de las tarjetas */
+  .margenes {
+    margin-bottom: 50px;
+  }
+
+  /* tamaño del contenedor del boton */
+  .container {
+    height: 20px;
+  }
+
+  /* centrar boton */
+  .center {
+    top: 10%; /* Mueve el boton hacia arriba si es negativo y hacia abajo si es positivo */
+    left: 68%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Mientras la resolucion no sea mas chica que 990px, que muestre los estilos del ultimo @media query, ahora si la resolucion es mas chica que 990px, muestra este media query */
+@media (min-width: 990px) {
+  .card-columns {
+    column-count: 2; /* cantidad de tarjetas por columna */
+    width: 800px; /* ancho de la tarjeta (en em)*/
+  }
+
+  /* Margenes de las tarjetas */
+  .margenes {
+    margin-top: 90px;
+    margin-right: 100px;
+    margin-bottom: 50px;
+    margin-left: 100px;
+  }
+
+  /* tamaño del contenedor del boton */
+  .container {
+    height: 20px;
+  }
+
+  /* centrar boton */
+  .center {
+    top: 10%; /* Mueve el boton hacia arriba si es negativo y hacia abajo si es positivo */
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (min-width: 1300px) {
+  .card-columns {
+    column-count: 4; /* cantidad de tarjetas por columna */
+    width: 1200px; /* ancho de la tarjeta (en em)*/
+  }
+
+  /* Margenes de las tarjetas */
+  .margenes {
+    margin-top: 90px;
+    margin-right: 100px;
+    margin-bottom: 50px;
+    margin-left: 0px;
+  }
+
+  /* tamaño del contenedor del boton */
+  .container {
+    height: 20px;
+  }
+
+  /* centrar boton */
+  .center {
+    top: 10%; /* Mueve el boton hacia arriba si es negativo y hacia abajo si es positivo */
+    left: 55%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media (min-width: 1600px) {
+  .card-columns {
+    column-count: 4; /* cantidad de tarjetas por columna */
+    width: 1500px; /* ancho de la tarjeta (en em)*/
+  }
+
+  /* Margenes de las tarjetas */
+  .margenes {
+    margin-top: 90px;
+    margin-right: 100px;
+    margin-bottom: 50px;
+    margin-left: 0px;
+  }
+
+  /* tamaño del contenedor del boton */
+  .container {
+    height: 20px;
+  }
+
+  /* centrar boton */
+  .center {
+    top: 10%; /* Mueve el boton hacia arriba si es negativo y hacia abajo si es positivo */
+    left: 68%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* A partir de que tamaño de pantalla se vuelve responsiva, en este caso a partir de los 1920px (apenas achico la pantalla ya se vuelve responsivo). En otras palabras,
+   mientras la pantalla no sea mas chica que 1920px, se aplica lo que esta adentro de este @media query. Cuando es mas chica que 1920px, se aplican los estilos de bootstrap u otro @media query si lo hay mas arriba*/
+@media (min-width: 1920px) {
+  .card-columns {
+    column-count: 4; /* cantidad de tarjetas por columna */
+    width: 1770px; /* ancho de la tarjeta (en em)*/
+  }
+  /* Margenes de las tarjetas */
+  .margenes {
+    margin-top: 90px;
+    margin-right: 100px;
+    margin-bottom: 50px;
+    margin-left: 0px;
+  }
+  /* tamaño del contenedor del boton */
+  .container {
+    height: 20px;
+  }
+
+  /* centrar boton */
+  .center {
+    top: 10%; /* Mueve el boton hacia arriba si es negativo y hacia abajo si es positivo */
+    left: 80%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  /* Aumentar tamaño del Body de las tarjetas para que queden todas del mismo tamaño */
+  /*   .card-body{
+  min-height: 140px;
+} */
+}
+
+.card-body {
+  background-color: gray;
+}
+
+/* boton de favoritos */
+.button-favorite-image {
+  display: block;
+  width: 35px;
+  height: 35px;
+  background-image: url("../../../assets/img/favorito2.png");
+  background-position: center;
+  background-size: 40px;
+  position: absolute;
+  top: 0%;
+}

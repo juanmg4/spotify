@@ -1,0 +1,31 @@
+<div class="card-columns margenes">
+  <!-- Muestro las canciones de a lotes, segun el valor de show -->
+  <div *ngFor="let cancionNueva of nuevasCanciones | slice:0:cantidadTarjetas; let i=index">
+    <div class="card">
+      <img class="card-img-top" [src]="cancionNueva.images | noimage" alt="..."/>
+ <button (click)="_favoritos.guardarNuevoLanzamientoFavorito(nuevasCanciones[i])" class="button-favorite-image"></button>
+     <div class="card-body"> <!-- Pinta el body del color que le llega como input del componente padre -->
+        <!-- text truncate corta el texto para que el body quede del mismo tamaño --> <!-- El atributo data-title me muestra la informacion completa de lo que contiene, al pasar el mouse por encima del texto truncado. En este caso, muestra el nombre completo de la cancion -->
+        <div class="card-title text-truncate" style="font-size: 30px; font-weight: 600;" data-title="{{cancionNueva.name}}">{{ cancionNueva.name }}</div>
+        <p class="card-text">
+          <!-- Pongo todos los artistas que cantan ese tema en botoncitos amarillos -->
+          <span style="font-size:90%" *ngFor="let artista of cancionNueva.artists" class="badge badge-warning">
+            {{ artista.name }}
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Boton de mostrar mas... -->
+<div class="container mt-3">
+  <div class="col-lg-4 center"> <!-- Ancho del boton de mostrar mas y posicion centrada-->
+    <div *ngIf="cantidadTarjetas < nuevasCanciones.length"> <!-- Mientras no llegue al final del arreglo, sigue apareciendo el boton de mostrar mas -->
+      <button type="button" style="width: 300px; margin-left: 16px;" class="btn btn-success btn-lg " (click)="increaseShowHome()">Mostrar mas...</button> <!-- Cada vez que hago click en el boton, llama al metodo handler increaseShow, que me incrementa el valor de la variable show para mostrar mas elementos por pantalla-->
+    </div>
+  </div>
+</div>
+
+
+<!-- btn-block -->

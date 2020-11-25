@@ -1,0 +1,133 @@
+/* A partir de que tamaño de pantalla se vuelve responsiva, en este caso a partir de los 125em o 2000px (apenas achico la pantalla ya se vuelve responsivo). En otras palabras,
+   mientras la pantalla no sea mas chica que 125em, se aplica lo que esta adentro de este @media query. Cuando es mas chica que 125em, se aplican los estilos de bootstrap */
+@media (min-width: 1920px){
+  .card-columns {
+      column-count: 4;/* cantidad de tarjetas por columna */
+       width: 1770px; /* ancho de la tarjeta (en em)*/
+  }
+
+  /* Tamaño fondos parrafos favoritos, si la pantalla es menor a 1920px, le aplica una responsividad por defecto */
+  .fondo{
+    margin-top: 20px;
+    width: 1775px;
+  }
+
+  .fondo2{
+    margin-top: 20px;
+    width: 1775px;
+  }
+
+  .fondo3{
+    margin-top: 20px;
+    width: 1775px;
+  }
+}
+
+/* Centrar boton de mostrar mas*/
+@media (min-width:100px){
+  .center{
+    margin-right: 100px;
+  }
+}
+
+@media (min-width:500px){
+  .margen-parrafo{
+     margin-right: 100px;
+  }
+  .parrafo-responsivo{
+    font-size: 50px;
+     font-weight: bold;
+     margin-bottom: 30px;
+      text-align: center;
+  }
+}
+
+@media (max-width:500px){
+  .margen-parrafo{
+     margin-right: 100px;
+     ;
+  }
+  .parrafo-responsivo{
+    font-size: 30px;
+     font-weight: bold;
+    /*  margin-bottom: 30px; */
+      text-align: center;
+  }
+}
+
+ @media (max-width:250px){
+  .margen-parrafo{
+     margin-right: 0px;
+  }
+  .parrafo-responsivo{
+    font-size: 20px;
+     font-weight: bold;
+     margin-right: 100px;
+      text-align: center;
+  }
+}
+
+/* Color fondos parrafos favoritos */
+.fondo{
+  background-color: darkred;
+}
+
+.fondo2{
+  background-color:darkgreen;
+}
+
+.fondo3{
+  background-color: rgb(34, 25, 95);
+}
+
+/* Para darle un estilo redondeado al fondo de los parrafos de favoritos*/
+.margen-parrafo{
+  border-radius: 50px;
+}
+
+/* largo formulario de busqueda pantalla > 570px */
+.form-control{
+  width: 480px;
+  margin-bottom: 90px;
+  margin-left: 5px;
+}
+
+/* Largo del formulario de busqueda */
+@media (max-width:570px){ /* max-width, quiere decir que desde 0px hasta 570px de pantalla, se muestra lo que esta adentro */
+.form-control{
+  width: 200px;
+  margin-bottom: 90px;
+  margin-left: 5px;
+}
+}
+
+/* boton de favoritos */
+.button-favorite-image {
+  display:block;
+  width:35px;
+  height:35px;
+  background-image: url('../../../assets/img/favorito2.png');
+  background-position: center;
+  background-size: 40px;
+  position: absolute;
+  top: 0%;
+}
+
+  /* Mantiene el tamaño original de la imagen, pero la corta si no entra */
+  .embed-responsive-1by1 .card-img-top {
+    object-fit: cover;
+  }
+
+  /* tamaño del contenedor del boton */
+  .container {
+    height: 20px;
+  }
+
+  /* centrar boton */
+  .center {
+    top: 30%; /* Mueve el boton hacia arriba si es negativo y hacia abajo si es positivo */
+    left: 80%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin-top: 50px;
+  }
